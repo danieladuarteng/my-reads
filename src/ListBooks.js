@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-
-
 //criando o componente ListBooks
 //statelesse function component, só tem return
 function ListBooks(props){
@@ -27,7 +25,7 @@ function ListBooks(props){
                                                 backgroundImage: `url(${book.cover})` 
                                             }}></div>
                                             <div className="book-shelf-changer">
-                                            <select onChange={(e) => props.onChangeShelf(e, book)}>
+                                            <select value={book.shelf} onChange={(e) => props.onChangeShelf(e, book)}>
                                                 <option value="move" disabled>Move to...</option>
                                                 <option value="currentlyReading">Currently Reading</option>
                                                 <option value="wantToRead">Want to Read</option>
@@ -58,7 +56,7 @@ function ListBooks(props){
                                                 backgroundImage: `url(${book.cover})` 
                                             }}></div> 
                                             <div className="book-shelf-changer">
-                                            <select onChange={(e) => props.onChangeShelf(e, book)}>
+                                            <select value={book.shelf} onChange={(e) => props.onChangeShelf(e, book)}>
                                                 <option value="move" disabled>Move to...</option>
                                                 <option value="currentlyReading">Currently Reading</option>
                                                 <option value="wantToRead">Want to Read</option>
@@ -89,7 +87,7 @@ function ListBooks(props){
                                                 backgroundImage: `url(${book.cover})` 
                                         }}></div>
                                         <div className="book-shelf-changer">
-                                        <select onChange={(e) => props.onChangeShelf(e,book)}>
+                                        <select  value={book.shelf} onChange={(e) => props.onChangeShelf(e,book)}>
                                             <option value="move" disabled>Move to...</option>
                                             <option value="currentlyReading">Currently Reading</option>
                                             <option value="wantToRead">Want to Read</option>
