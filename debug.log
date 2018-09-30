@@ -1,0 +1,3 @@
+[0930/164255.797:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
+[0930/164255.802:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
+[0930/164255.803:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
