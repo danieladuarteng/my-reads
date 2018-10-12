@@ -54,7 +54,7 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
-  handleChangeShelf = (e, bookToUpdateShelf) => {//o disabled está dando problema na primeira seleção do option
+  handleChangeShelf = (e, bookToUpdateShelf) => {
     const shelf = e.target.value;
     bookToUpdateShelf.shelf = shelf;
 

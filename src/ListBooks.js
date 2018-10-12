@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 //criando o componente ListBooks
 //statelesse function component, só tem return
@@ -110,5 +111,8 @@ function ListBooks(props){
     )
 }
 
-
+ListBooks.propTypes ={
+    books: PropTypes.array.isRequired,//aqui falo que minha prop books precisa ser um array
+    onChangeShelf: PropTypes.func.isRequired,//e aqui que a onChangeShelf seja uma função
+}
 export default ListBooks
