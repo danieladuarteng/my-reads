@@ -23,7 +23,7 @@ function ListBooks(props){
                                         <div className="book-top">
                                             <div className="book-cover" style={{ 
                                                 width: 128, height: 193,  
-                                                backgroundImage: `url(${book.cover})` 
+                                                backgroundImage: `url(${book.imageLinks.thumbnail})` 
                                             }}></div>
                                             <div className="book-shelf-changer">
                                             <select value={book.shelf} onChange={(e) => props.onChangeShelf(e, book)}>
@@ -54,7 +54,7 @@ function ListBooks(props){
                                         <div className="book-top">
                                             <div className="book-cover" style={{ 
                                                 width: 128, height: 193,  
-                                                backgroundImage: `url(${book.cover})` 
+                                                backgroundImage: `url(${book.imageLinks.thumbnail})` 
                                             }}></div> 
                                             <div className="book-shelf-changer">
                                             <select value={book.shelf} onChange={(e) => props.onChangeShelf(e, book)}>
@@ -85,7 +85,7 @@ function ListBooks(props){
                                     <div className="book-top">
                                         <div className="book-cover" style={{ 
                                                 width: 128, height: 193,  
-                                                backgroundImage: `url(${book.cover})` 
+                                                backgroundImage: `url(${book.imageLinks.thumbnail})` 
                                         }}></div>
                                         <div className="book-shelf-changer">
                                         <select  value={book.shelf} onChange={(e) => props.onChangeShelf(e,book)}>
