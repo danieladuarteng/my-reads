@@ -16,9 +16,12 @@ class SearchBooks extends Component {
     }
 
     handleSearch = (query) => {
-        BooksAPI.search(query).then((result)=>{
-                this.setState({ query: query.trim(), result})
+        this.setState({query});
+        if(query.trim().length){
+            BooksAPI.search(query.trim()).then((result)=>{
+                this.setState({result})
             })
+        }
     }
 
     clearQuery = () => {
@@ -33,8 +36,8 @@ class SearchBooks extends Component {
 
         if(this.state.query){
             
-            showingBooks = result
-            console.log('result', result)
+            showingBooks = result.error ? result.items: result;
+         
 
         }else{
             showingBooks = books
@@ -77,7 +80,7 @@ class SearchBooks extends Component {
                                                 <div className="book-top">
                                                     <div className="book-cover" style={{
                                                         width: 128, height: 193,
-                                                        backgroundImage: `url(${book.imageLinks.thumbnail})`
+                                                        backgroundImage: `url(${book.imageLinks && book.imageLinks.thumbnail})`
                                                     }}></div>
                                                     <div className="book-shelf-changer">
                                                         <select value={book.shelf} onChange={(e) => onChangeShelf(e, book)}>
