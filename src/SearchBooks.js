@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
-
+import * as BooksAPI from './BooksAPI'
 
 class SearchBooks extends Component {
     static propTypes = {
@@ -11,31 +11,36 @@ class SearchBooks extends Component {
     }
 
     state = {
-        query: ''
+        query: '',
+        result: [],
     }
 
-    updateQuery = (query) => {
-        this.setState({ query: query.trim() })
+    handleSearch = (query) => {
+        BooksAPI.search(query).then((result)=>{
+                this.setState({ query: query.trim(), result})
+            })
     }
 
-    clearQuery = () =>{
-        this.setState({ query: ''})
+    clearQuery = () => {
+        this.setState({ query: '' })
     }
 
     render() {
-        const {books, onChangeShelf} = this.props
-        const {query}  = this.state
+        const {  onChangeShelf, books } = this.props
+        const { query, result} = this.state
 
-        let showingBooks
-        if (query) {
-            const match = new RegExp(escapeRegExp(query), 'i')
-            showingBooks = books.filter((book) => match.test(book.title))
+        let showingBooks 
 
-        } else {
+        if(this.state.query){
+            
+            showingBooks = result
+            console.log('result', result)
+
+        }else{
             showingBooks = books
         }
 
-        showingBooks.sort(sortBy('title'))//exibe em ordem alfabética
+      
 
         return (
             <div className="list-books">
@@ -44,34 +49,35 @@ class SearchBooks extends Component {
                 </div>
 
                 <div className="list-books-content">
+                    
                     <div>
-                        <div class='search-books-bar'>
+                        <div className='search-books-bar'>
                             <input
                                 className='search-books-bar'
                                 type='text'
                                 placeholder='Search new books'
                                 value={query}
-                                onChange={(event) => this.updateQuery(event.target.value)}
+                                onChange={(event) => this.handleSearch(event.target.value)}
                             />
                         </div>
-
+                        
                         {showingBooks.length !== books.length && (
-                            <div>
-                                <span>Now showing {showingBooks.length} of {books.length} total</span>
-                                <button  onClick={this.clearQuery}>Show all</button>
-                            </div>
+                        <div className='showing-contacts'>
+                            <span>Now showing {showingBooks.length} of {books.length} total</span>
+                            <button onClick={this.clearQuery}>Show all</button>
+                        </div>
                         )}
+                      
                         <div className="bookshelf">
-
                             <div className="bookshelf-books">
                                 <ol className="books-grid">
-                                    {showingBooks.map(book => (
-                                        <li key={book.title}>
+                                    {showingBooks && showingBooks.map(book => (
+                                        <li key={book.id}>
                                             <div className="book">
                                                 <div className="book-top">
                                                     <div className="book-cover" style={{
                                                         width: 128, height: 193,
-                                                        backgroundImage: `url(${book.cover})`
+                                                        backgroundImage: `url(${book.imageLinks.thumbnail})`
                                                     }}></div>
                                                     <div className="book-shelf-changer">
                                                         <select value={book.shelf} onChange={(e) => onChangeShelf(e, book)}>

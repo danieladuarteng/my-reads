@@ -1,7 +1,8 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import ListBooks from './ListBooks';
+import ListBooks from './ListBooks'
+import SearchBooks from './SearchBooks'
 
 class BooksApp extends React.Component {
   state = {//colocamos no state para que o React gerencie as atualizações 
@@ -37,12 +38,23 @@ class BooksApp extends React.Component {
     console.log(this.state)
     return (
       <div className="app">
-
-        <ListBooks
+        {this.state.showSearchPage === false &&(
+          <ListBooks
           books={this.state.books}
           onChangeShelf={this.handleChangeShelf}
+          onNavigate={()=>{
+            this.setState({showSearchPage: true})
+          }}
         />
-
+        )}
+        {this.state.showSearchPage === true &&(
+        <SearchBooks 
+          books={this.state.books}
+          onChangeShelf={this.handleChangeShelf}
+          result={this.showingBooks}
+        />
+        )}
+        
       </div>
     )
   }

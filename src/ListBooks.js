@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { Component }  from 'react'
 import PropTypes from 'prop-types'
 
-//criando o componente ListBooks
-//statelesse function component, só tem return
-function ListBooks(props){
-    
+
+class ListBooks extends Component {
+    static propTypes = {
+        books: PropTypes.array.isRequired,//aqui falo que minha prop books precisa ser um array
+        onChangeShelf: PropTypes.func.isRequired,//e aqui que a onChangeShelf seja uma função
+    }
+
+    render(){
+        const { books, onChangeShelf,onNavigate } = this.props
     return (
         <div className="list-books">
         <div className="list-books-title">
             <h1>MyReads</h1>
         </div>
+
+        <a 
+            href="#search"
+            onClick={onNavigate}
+            className="search-books"
+        >Search new books</a>
 
         <div className="list-books-content">
             <div>
@@ -17,7 +28,7 @@ function ListBooks(props){
                     <h2 className="bookshelf-title">Currently Reading</h2>
                     <div className="bookshelf-books">
                         <ol className="books-grid">
-                            {props.books.filter(book=> book.shelf==='currentlyReading').map(book=> (
+                            {books.filter(book=> book.shelf==='currentlyReading').map(book=> (
                                 <li key={book.title}>
                                     <div className="book">
                                         <div className="book-top">
@@ -26,7 +37,7 @@ function ListBooks(props){
                                                 backgroundImage: `url(${book.imageLinks.thumbnail})` 
                                             }}></div>
                                             <div className="book-shelf-changer">
-                                            <select value={book.shelf} onChange={(e) => props.onChangeShelf(e, book)}>
+                                            <select value={book.shelf} onChange={(e) => onChangeShelf(e, book)}>
                                                 <option value="move" disabled>Move to...</option>
                                                 <option value="currentlyReading">Currently Reading</option>
                                                 <option value="wantToRead">Want to Read</option>
@@ -48,7 +59,7 @@ function ListBooks(props){
                     <h2 className="bookshelf-title">Want to Read</h2>
                     <div className="bookshelf-books">
                         <ol className="books-grid">
-                            {props.books.filter(book=> book.shelf==='wantToRead').map(book=> (
+                            {books.filter(book=> book.shelf==='wantToRead').map(book=> (
                                 <li key={book.title}>
                                     <div className="book">
                                         <div className="book-top">
@@ -57,7 +68,7 @@ function ListBooks(props){
                                                 backgroundImage: `url(${book.imageLinks.thumbnail})` 
                                             }}></div> 
                                             <div className="book-shelf-changer">
-                                            <select value={book.shelf} onChange={(e) => props.onChangeShelf(e, book)}>
+                                            <select value={book.shelf} onChange={(e) => onChangeShelf(e, book)}>
                                                 <option value="move" disabled>Move to...</option>
                                                 <option value="currentlyReading">Currently Reading</option>
                                                 <option value="wantToRead">Want to Read</option>
@@ -79,7 +90,7 @@ function ListBooks(props){
                 <h2 className="bookshelf-title">Read</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
-                        {props.books.filter(book=> book.shelf==='read').map(book=> (
+                        {books.filter(book=> book.shelf==='read').map(book=> (
                             <li key={book.title}>
                                 <div className="book">
                                     <div className="book-top">
@@ -88,7 +99,7 @@ function ListBooks(props){
                                                 backgroundImage: `url(${book.imageLinks.thumbnail})` 
                                         }}></div>
                                         <div className="book-shelf-changer">
-                                        <select  value={book.shelf} onChange={(e) => props.onChangeShelf(e,book)}>
+                                        <select  value={book.shelf} onChange={(e) => onChangeShelf(e,book)}>
                                             <option value="move" disabled>Move to...</option>
                                             <option value="currentlyReading">Currently Reading</option>
                                             <option value="wantToRead">Want to Read</option>
@@ -109,10 +120,7 @@ function ListBooks(props){
     </div>
 </div>
     )
-}
+}}
 
-ListBooks.propTypes ={
-    books: PropTypes.array.isRequired,//aqui falo que minha prop books precisa ser um array
-    onChangeShelf: PropTypes.func.isRequired,//e aqui que a onChangeShelf seja uma função
-}
+
 export default ListBooks
