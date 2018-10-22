@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 
@@ -16,11 +17,10 @@ class ListBooks extends Component {
                     <h1>MyReads</h1>
                 </div>
 
-                <a
-                    href="#search"
-                    onClick={onNavigate}
+                <Link
+                    to="/search"
                     className="search-books"
-                >Search new books</a>
+                >Search new books</Link>
 
                 <div className="list-books-content">
                     <div>

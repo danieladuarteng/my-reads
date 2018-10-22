@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import ListBooks from './ListBooks'
@@ -7,7 +8,6 @@ import SearchBooks from './SearchBooks'
 class BooksApp extends React.Component {
   state = {//colocamos no state para que o React gerencie as atualizações 
     books: [],
-    showSearchPage: false
   }
 
   componentDidMount() {
@@ -38,22 +38,22 @@ class BooksApp extends React.Component {
     console.log(this.state)
     return (
       <div className="app">
-        {this.state.showSearchPage === false &&(
+        <Route exact path="/" e render={() => (
           <ListBooks
-          books={this.state.books}
-          onChangeShelf={this.handleChangeShelf}
-          onNavigate={()=>{
-            this.setState({showSearchPage: true})
-          }}
-        />
-        )}
-        {this.state.showSearchPage === true &&(
-        <SearchBooks 
-          books={this.state.books}
-          onChangeShelf={this.handleChangeShelf}
-        />
-        )}
-        
+            books={this.state.books}
+            onChangeShelf={this.handleChangeShelf}
+          />
+        )} />
+
+        <Route path="/search" render={() => (
+          <SearchBooks
+            books={this.state.books}
+            onChangeShelf={this.handleChangeShelf}
+          />
+        )} />
+
+
+
       </div>
     )
   }
