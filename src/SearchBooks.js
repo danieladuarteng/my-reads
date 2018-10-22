@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
 import * as BooksAPI from './BooksAPI'
 
 class SearchBooks extends Component {
@@ -16,10 +14,10 @@ class SearchBooks extends Component {
     }
 
     handleSearch = (query) => {
-        this.setState({query});
-        if(query.trim().length){
-            BooksAPI.search(query.trim()).then((result)=>{
-                this.setState({result})
+        this.setState({ query });
+        if (query.trim().length) {
+            BooksAPI.search(query.trim()).then((result) => {
+                this.setState({ result })
             })
         }
     }
@@ -29,22 +27,17 @@ class SearchBooks extends Component {
     }
 
     render() {
-        const {  onChangeShelf, books } = this.props
-        const { query, result} = this.state
+        const { onChangeShelf, books } = this.props
+        const { query, result } = this.state
 
-        let showingBooks 
+        let showingBooks
 
-        if(this.state.query){
-            
-            showingBooks = result.error ? result.items: result;
-         
-
-        }else{
+        if (this.state.query) {
+            showingBooks = result.error ? result.items : result;
+        } else {
             showingBooks = books
         }
-
-      
-
+        
         return (
             <div className="list-books">
                 <div className="list-books-title">
@@ -52,7 +45,7 @@ class SearchBooks extends Component {
                 </div>
 
                 <div className="list-books-content">
-                    
+
                     <div>
                         <div className='search-books-bar'>
                             <input
@@ -63,14 +56,14 @@ class SearchBooks extends Component {
                                 onChange={(event) => this.handleSearch(event.target.value)}
                             />
                         </div>
-                        
+
                         {showingBooks.length !== books.length && (
-                        <div className='showing-contacts'>
-                            <span>Now showing {showingBooks.length} of {books.length} total</span>
-                            <button onClick={this.clearQuery}>Show all</button>
-                        </div>
+                            <div className='showing-contacts'>
+                                <span>Now showing {showingBooks.length} of {books.length} total</span>
+                                <button onClick={this.clearQuery}>Show all</button>
+                            </div>
                         )}
-                      
+
                         <div className="bookshelf">
                             <div className="bookshelf-books">
                                 <ol className="books-grid">

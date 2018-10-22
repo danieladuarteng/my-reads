@@ -42,3 +42,20 @@ export const search = (query) =>
     body: JSON.stringify({ query })
   }).then(res => res.json())
     .then(data => data.books)
+
+    /*outra forma de tratar o search
+    export const search = (query) =>
+    fetch(`${api}/search`, {
+      method: 'POST',
+      headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ query })
+    }).then(res => res.json())
+      .then(res => {
+        if(res.books.error){
+          return []
+        }
+        return res.books;
+      });*/
