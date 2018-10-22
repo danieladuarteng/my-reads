@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import * as BooksAPI from './BooksAPI'
 
@@ -47,7 +48,9 @@ class SearchBooks extends Component {
                 <div className="list-books-content">
 
                     <div>
+                    <Link className='close-search' to="/">Close</Link>
                         <div className='search-books-bar'>
+                            
                             <input
                                 className='search-books-bar'
                                 type='text'
