@@ -38,19 +38,16 @@ class SearchBooks extends Component {
         } else {
             showingBooks = books
         }
-        
+
         return (
             <div className="list-books">
-                <div className="list-books-title">
+                <div className="list-books-title-search">
                     <h1>Search</h1>
                 </div>
-
                 <div className="list-books-content">
-
                     <div>
-                    <Link className='close-search' to="/">Close</Link>
                         <div className='search-books-bar'>
-                            
+                            <Link className='close-search' to="/">Close</Link>
                             <input
                                 className='search-books-bar'
                                 type='text'
@@ -89,7 +86,7 @@ class SearchBooks extends Component {
                                                     </div>
                                                 </div>
                                                 <div className="book-title">{book.title}</div>
-                                                <div className="book-authors">{book.authors}</div>
+                                                <div className="book-authors-want">{book.authors}</div>
                                             </div>
                                         </li>
                                     ))}
@@ -99,7 +96,6 @@ class SearchBooks extends Component {
                     </div>
                 </div>
             </div>
-
         )
     }
 }
