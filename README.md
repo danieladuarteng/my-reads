@@ -1,8 +1,8 @@
 # MyReads Project
 
-This is the first project of the Nanodegree React Developer course, from Udacity Brasil
+This is the first project of the Nanodegree React Developer course, from Udacity Brasil.
 
-The goal is was to create a shelf where it was possible to move the books into the categories: reading, reading and reading, as well as adding more books by means of books search 
+The goal is was to create a shelf where it was possible to move the books into the categories: currently reading, want read and read, as well as adding more books by means of books search 
 
 Drawing based on the character Sakura Haruno, created in Adobe Illustrator
 
