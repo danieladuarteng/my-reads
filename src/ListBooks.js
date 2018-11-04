@@ -3,7 +3,22 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import logo from './images/logo.png'
 import add from './icons/add.svg'
-import Book from './Book'
+import BookShelf from './BookShelf'
+
+const shelves = [
+    {
+        title: 'Currently Reading',
+        shelf: 'currentlyReading',
+    },
+    {
+        title: 'Read',
+        shelf: 'read',
+    },
+    {
+        title: 'Want To Read',
+        shelf: 'wantToRead',
+    },
+];
 
 
 class ListBooks extends Component {
@@ -11,6 +26,7 @@ class ListBooks extends Component {
         books: PropTypes.array.isRequired,//aqui falo que minha prop books precisa ser um array
         onChangeShelf: PropTypes.func.isRequired,//e aqui que a onChangeShelf seja uma função
     }
+
 
     render() {
         const { books, onChangeShelf } = this.props
@@ -28,73 +44,27 @@ class ListBooks extends Component {
                     </Link>
                 </div>
 
-                <div className="list-books-content">
-                    <div className="bookshelf-reading">
-                        <h2 className="bookshelf-title">Currently Reading</h2>
-                        <ol className="books-grid">
-                            {books.filter(book => book.shelf === 'currentlyReading').map(book => (
-                                <li key={book.id}>
-                                    <Book
-                                        imageLinks={book.imageLinks}
-                                        thumbnail={book.imageLinks.thumbnail}
-                                        onChange={(e) => onChangeShelf(e, book)}
-                                        shelf={book.shelf}
-                                        title={book.title}
-                                        authors={book.authors}
-                                    />
-                                </li>
-                            ))}
-                        </ol>
+                {shelves.map(item =>(
+                    <BookShelf
+                        key={item.title}
+                        books={books}
+                        title={item.title}
+                        shelf={item.shelf}
+                        onChangeShelf={onChangeShelf}                 
+                    />
+                ))}
 
-                    </div>
 
-                    <div className="bookshelf-want">
-                        <h2 className="bookshelf-title">Want to Read</h2>
-                        <ol className="books-grid">
-                            {books.filter(book => book.shelf === 'wantToRead').map(book => (
-                                <li key={book.id}>
-                                    <Book
-                                        imageLinks={book.imageLinks}
-                                        thumbnail={book.imageLinks.thumbnail}
-                                        onChange={(e) => onChangeShelf(e, book)}
-                                        shelf={book.shelf}
-                                        title={book.title}
-                                        authors={book.authors}
-                                    />
-                                </li>
-                            ))}
-                        </ol>
-
-                    </div>
-
-                    <div className="bookshelf-read">
-                        <h2 className="bookshelf-title">Read</h2>
-                        <ol className="books-grid">
-                            {books.filter(book => book.shelf === 'read').map(book => (
-                                <li key={book.id}>
-                                    <Book
-                                        imageLinks={book.imageLinks}
-                                        thumbnail={book.imageLinks.thumbnail}
-                                        onChange={(e) => onChangeShelf(e, book)}
-                                        shelf={book.shelf}
-                                        title={book.title}
-                                        authors={book.authors}
-                                    />
-                                </li>
-                            ))}
-                        </ol>
-
-                    </div>
-                    <footer>Project Udacity My Reads - Developed by
+                <footer>Project Udacity My Reads - Developed by
                             <a
-                            href="https://github.com/danieladuarteng"
-                            alt="GitHub of Daniela Duarte"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >Daniela Duarte - GitHub
+                        href="https://github.com/danieladuarteng"
+                        alt="GitHub of Daniela Duarte"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >Daniela Duarte - GitHub
                             </a></footer>
-                </div>
             </div>
+
         )
     }
 }

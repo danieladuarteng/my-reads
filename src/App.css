@@ -42,7 +42,7 @@ a {
   text-align: center;
 }
 
-.bookshelf-reading, .bookshelf-read{
+.bookshelf, .bookshelf-read{
   background-color: #fff;
 }
 
@@ -98,9 +98,10 @@ a {
 }
 
 footer, footer a{
-  color: #fff;
+  color: #F74C9A;
   padding: 10px;
   font-weight: bold;
+  text-align: center;
 }
 
 /* search page */
