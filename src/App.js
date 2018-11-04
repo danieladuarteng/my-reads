@@ -10,10 +10,9 @@ class BooksApp extends React.Component {
     books: [],
   }
 
-  componentDidMount() {
-    BooksAPI.getAll().then((books) => {
+  async componentDidMount() {//deixa de forma assincrona
+    const books = await BooksAPI.getAll()//fala para esperar até pegar todos os dados
       this.setState({ books })
-    })
   }
 
   handleChangeShelf = (e, bookToUpdateShelf) => {
