@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Book from './Book'
 import * as BooksAPI from './BooksAPI'
 
+
 class SearchBooks extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,//aqui falo que minha prop books precisa ser um array
@@ -15,11 +16,20 @@ class SearchBooks extends Component {
         result: [],
     }
 
+    async myBooks () {
+        await BooksAPI.getAll().then(result =>{
+            return result
+        })
+    }
+    
+
     handleSearch = (query) => {
         this.setState({ query });
         if (query.trim().length) {
             BooksAPI.search(query.trim()).then((result) => {
-                this.setState({ result })
+                let myBook = this.myBooks();
+                result.filter( sc => sc.id !== myBook.id) 
+                //this.setState({ result })
             })
         }
     }
@@ -32,6 +42,10 @@ class SearchBooks extends Component {
         const { onChangeShelf, books } = this.props
         const { query, result } = this.state
 
+        const myBooks = this.props.books;
+       
+
+       
         let showingBooks
 
         if (this.state.query) {
