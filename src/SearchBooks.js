@@ -24,6 +24,37 @@ class SearchBooks extends Component {
         }
     }
 
+    handleSearch = (query) => {
+        this.setState({ query });
+        if (query.trim().length) {
+            BooksAPI.search(query.trim()).then((result) => {
+                let currentBooks = this.props.books
+                currentBooks.forEach(currentBooks => {
+                    result.filter(sc => sc.id === currentBooks.id  ?
+                        
+                            console.log("Ids iguais e pesquisa sem shelf",  
+                            currentBooks.title, currentBooks.shelf, sc.title, sc.shelf)
+                        : 
+
+                       
+                        console.log("São diferentes ", currentBooks.title, currentBooks.shelf, sc.title, sc.shelf))
+
+
+
+
+
+
+                        //this.setState({ result })
+
+
+
+                
+                
+            
+        })
+
+    })}}
+
     clearQuery = () => {
         this.setState({ query: '' })
     }
