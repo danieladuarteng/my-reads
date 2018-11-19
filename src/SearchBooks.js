@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Book from './Book'
 import * as BooksAPI from './BooksAPI'
-import {debounce} from 'lodash'
+import { debounce } from 'lodash'
 
 class SearchBooks extends Component {
     static propTypes = {
@@ -17,24 +17,20 @@ class SearchBooks extends Component {
         isValid: true,
     }
 
-    handleSearch (query) {
+    search(query) {
         this.setState({ query });
         if (query.trim().length) {
             BooksAPI.search(query.trim()).then((response) => {
-                response.map((item) => {
-                    const resultBooks = { ...item }
-                    resultBooks.shelf = 'none'
-                    let currentBooks = this.props.books
-                    //tem na pesquisa e na prateleira
-                    let compare = currentBooks.filter(currentBook => response.map(res => res.id).includes(currentBook.id))
-                    return compare ? this.state.result.push(compare) : this.state.result.push(resultBooks)
+                let search = response.map(currentBook => {
+                    let existingBook = this.props.books.find(book => book.id === currentBook.id)
+                    if (existingBook) {
+                        currentBook.shelf = existingBook.shelf
+                    } else {
+                        currentBook.shelf = 'none'
+                    }
+                    return currentBook;
                 })
-                return this.state.result
-            }).then((response) => {
-                this.setState({
-                    result: response,
-                    isValid: true
-                })
+                this.setState({ result: search })
             }).catch((err) => {
                 this.setState({
                     result: [],
@@ -42,6 +38,7 @@ class SearchBooks extends Component {
                 })
             })
         } else {
+            console.log('Empty')
             this.setState({
                 result: [],
                 isValid: true
@@ -49,16 +46,15 @@ class SearchBooks extends Component {
         }
     }
 
+    clearQuery = () => {
+        this.setState({ query: '' })
+    }
 
-clearQuery = () => {
-    this.setState({ query: '' })
-}
+    render() {
+        const { onChangeShelf, books } = this.props
+        const { query, result, isValid } = this.state
 
-render() {
-    const { onChangeShelf, books } = this.props
-    const { query, result } = this.state
-
-    let showingBooks
+        let showingBooks
 
         if (this.state.query) {
             showingBooks = result.error ? result.items : result;
@@ -66,56 +62,82 @@ render() {
             showingBooks = books
         }
 
-        console.log(showingBooks)
+        console.log(isValid)
 
-    return (
-        <div className="list-books">
-            <div className="list-books-title-search">
-                <h1>Search</h1>
-            </div>
-            <div className="list-books-content">
-                <div>
-                    <div className='search-books-bar'>
-                        <Link className='close-search' to="/">Close</Link>
-                        <input
-                            className='search-books-bar'
-                            type='text'
-                            placeholder='Search new books'
-                            value={query}
-                            onChange={(event) => this.handleSearch(event.target.value)}
-                        />
-                    </div>
-
-                    {showingBooks.length > 0 && (
-                        <div className='showing-contacts'>
-                            <span>Now showing {result.length}</span>
-                            <button onClick={this.clearQuery}>Show all</button>
+        return (
+            <div className="list-books" >
+                <div className="list-books-title-search">
+                    <h1>Search</h1>
+                </div>
+                <div className="list-books-content">
+                    <div>
+                        <div className='search-books-bar'>
+                            <Link className='close-search' to="/">Close</Link>
+                            <input
+                                className='search-books-bar'
+                                type='text'
+                                placeholder='Search new books'
+                                value={query}
+                                onChange={(event) => this.search(event.target.value)}
+                            />
                         </div>
-                    )}
 
-                    <div className="bookshelf">
-                        <div className="bookshelf-books">
-                            <ol className="books-grid">
-                                {showingBooks && showingBooks.map((book, index) => (
-                                    <li key={index}>
-                                        <Book
-                                            imageLinks={book.imageLinks}
-                                            thumbnail={book.imageLinks.thumbnail}
-                                            onChange={(e) => onChangeShelf(e, book)}
-                                            shelf={book.shelf}
-                                            title={book.title}
-                                            authors={book.authors}
-                                        />
-                                    </li>
-                                ))}
-                            </ol>
+                        {(isValid === true && showingBooks.length > 0) && (
+                            <div className='showing-contacts'>
+                                <span>Now showing {showingBooks.length}</span>
+                                <button onClick={this.clearQuery}>Show all</button>
+                            </div>
+                        )}
+
+                        {isValid === false && (
+                            <div className='showing-contacts'>
+                                <span>We didn't find anything</span>
+                                <span>Please try again with words: 'Android', 
+                                    'Art', 'Artificial Intelligence', 'Astronomy', 
+                                    'Austen', 'Baseball', 'Basketball', 'Bhagat', 
+                                    'Biography', 'Brief', 'Business', 'Camus', 
+                                    'Cervantes', 'Christie', 'Classics', 'Comics', 
+                                    'Cook', 'Cricket', 'Cycling', 'Desai', 'Design', 
+                                    'Development', 'Digital Marketing', 'Drama', 
+                                    'Drawing', 'Dumas', 'Education', 'Everything', 
+                                    'Fantasy', 'Film', 'Finance', 'First', 'Fitness', 
+                                    'Football', 'Future', 'Games', 'Gandhi', 'Homer', 
+                                    'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King', 
+                                    'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make', 
+                                    'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate', 'Painting', 
+                                    'Philosophy', 'Photography', 'Poetry', 'Production', 'Programming', 
+                                    'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 
+                                    'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 
+                                    'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 
+                                    'Web Development', 'iOS'</span>
+                                
+                            </div>
+                        )}
+
+
+                        <div className="bookshelf">
+                            <div className="bookshelf-books">
+                                <ol className="books-grid">
+                                    {showingBooks && showingBooks.map((book) => (
+                                        <li key={book.id}>
+                                            <Book
+                                                imageLinks={book.imageLinks}
+                                                thumbnail={book.imageLinks.thumbnail} 
+                                                onChange={(e) => onChangeShelf(e, book)}
+                                                shelf={book.shelf}
+                                                title={book.title || ''}
+                                                authors={book.authors}
+                                            />
+                                        </li>
+                                    ))}
+                                </ol>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    )
-}
+        )
+    }
 
 }
 

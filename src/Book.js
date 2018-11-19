@@ -2,13 +2,22 @@ import React from 'react'
 
 class Book extends React.Component {
     render() {
-        const { imageLinks, thumbnail, onChange, shelf, title, authors } = this.props;
+        const {  onChange, shelf, title } = this.props;
+
+        let { imageLinks, authors, thumbnail } = this.props;
+        let bookCover;
+        if (typeof imageLinks === 'undefined') {
+            bookCover = ''
+          } else {
+            bookCover = thumbnail;
+          }
+
         return (
             <div className="book">
                 <div className="book-top">
                     <div className="book-cover" style={{
                         width: 128, height: 193,
-                        backgroundImage: `url(${imageLinks && thumbnail})`
+                        backgroundImage: `url(${bookCover})`
                     }}></div>
                     <div className="book-shelf-changer">
                         <select value={shelf} onChange={onChange}>
