@@ -122,7 +122,6 @@ class SearchBooks extends Component {
                                         <li key={book.id}>
                                             <Book
                                                 imageLinks={book.imageLinks}
-                                                thumbnail={book.imageLinks.thumbnail} 
                                                 onChange={(e) => onChangeShelf(e, book)}
                                                 shelf={book.shelf}
                                                 title={book.title || ''}
