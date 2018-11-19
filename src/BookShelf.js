@@ -12,12 +12,11 @@ class BookShelf extends React.Component {
                         {books.filter(book => book.shelf === shelf).map(book => (
                             <li key={book.id}>
                                 <Book
+                                    book={book}
                                     imageLinks={book.imageLinks}
-                                    thumbnail={book.imageLinks.thumbnail}
                                     onChange={(e) => onChangeShelf(e, book)}
                                     shelf={book.shelf}
                                     title={book.title}
-                                    authors={book.authors}
                                 />
                             </li>
                         ))}

@@ -82,14 +82,14 @@ class SearchBooks extends Component {
                             />
                         </div>
 
-                        {(isValid === true && showingBooks.length > 0) && (
+                        {(isValid && showingBooks.length > 0) && (
                             <div className='showing-contacts'>
                                 <span>Now showing {showingBooks.length}</span>
                                 <button onClick={this.clearQuery}>Show all</button>
                             </div>
                         )}
 
-                        {isValid === false && (
+                        {!isValid && (
                             <div className='showing-contacts'>
                                 <span>We didn't find anything</span>
                                 <span>Please try again with words: 'Android', 
@@ -109,8 +109,7 @@ class SearchBooks extends Component {
                                     'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 
                                     'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 
                                     'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 
-                                    'Web Development', 'iOS'</span>
-                                
+                                    'Web Development', 'iOS'</span> 
                             </div>
                         )}
 
@@ -121,11 +120,11 @@ class SearchBooks extends Component {
                                     {showingBooks && showingBooks.map((book) => (
                                         <li key={book.id}>
                                             <Book
+                                                book={book}
                                                 imageLinks={book.imageLinks}
                                                 onChange={(e) => onChangeShelf(e, book)}
                                                 shelf={book.shelf}
-                                                title={book.title || ''}
-                                                authors={book.authors}
+                                                title={book.title}
                                             />
                                         </li>
                                     ))}

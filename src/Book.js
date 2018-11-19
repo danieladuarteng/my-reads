@@ -2,15 +2,23 @@ import React from 'react'
 
 class Book extends React.Component {
     render() {
-        const {  onChange, shelf, title } = this.props;
+        const { onChange, shelf, title } = this.props;
 
-        let { imageLinks, authors, thumbnail } = this.props;
-        let bookCover;
+        let { imageLinks, book} = this.props;
+
+        let bookCover, authors;
+
         if (typeof imageLinks === 'undefined') {
-            bookCover = ''
-          } else {
-            bookCover = thumbnail;
-          }
+            bookCover = '';
+        } else {
+            bookCover = imageLinks.thumbnail;
+        }
+
+        if(typeof book.authors === 'undefined'){
+            authors='No authors';
+        } else{
+            authors = book.authors
+        }
 
         return (
             <div className="book">
