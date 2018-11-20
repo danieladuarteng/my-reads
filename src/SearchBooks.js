@@ -14,7 +14,6 @@ class SearchBooks extends Component {
     state = {
         query: '',
         result: [],
-        isValid: true,
     }
 
     search(query) {
@@ -34,25 +33,23 @@ class SearchBooks extends Component {
             }).catch((err) => {
                 this.setState({
                     result: [],
-                    isValid: false
                 })
             })
         } else {
             console.log('Empty')
             this.setState({
                 result: [],
-                isValid: true
             })
         }
     }
 
     clearQuery = () => {
-        this.setState({ query: '' })
+        this.setState({ query: ''})
     }
 
     render() {
         const { onChangeShelf, books } = this.props
-        const { query, result, isValid } = this.state
+        const { query, result } = this.state
 
         let showingBooks
 
@@ -62,9 +59,8 @@ class SearchBooks extends Component {
             showingBooks = books
         }
 
-        console.log(isValid)
-
         return (
+            <div>
             <div className="list-books" >
                 <div className="list-books-title-search">
                     <h1>Search</h1>
@@ -82,36 +78,39 @@ class SearchBooks extends Component {
                             />
                         </div>
 
-                        {(isValid && showingBooks.length > 0) && (
+                        {!showingBooks.length  && (
+                            <div className='message-error'>
+                                <p>We didn't find anything. Please try again with words:</p>
+                                <p>   'Android',
+                                    'Art', 'Artificial Intelligence', 'Astronomy',
+                                    'Austen', 'Baseball', 'Basketball', 'Bhagat',
+                                    'Biography', 'Brief', 'Business', 'Camus',
+                                    'Cervantes', 'Christie', 'Classics', 'Comics',
+                                    'Cook', 'Cricket', 'Cycling', 'Desai', 'Design',
+                                    'Development', 'Digital Marketing', 'Drama',
+                                    'Drawing', 'Dumas', 'Education', 'Everything',
+                                    'Fantasy', 'Film', 'Finance', 'First', 'Fitness',
+                                    'Football', 'Future', 'Games', 'Gandhi', 'Homer',
+                                    'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King',
+                                    'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make',
+                                    'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate', 'Painting',
+                                    'Philosophy', 'Photography', 'Poetry', 'Production', 'Programming',
+                                    'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire',
+                                    'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale',
+                                    'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality',
+                                    'Web Development', 'iOS'
+                                </p>
+                            </div>
+                        )}
+
+                        {showingBooks.length !== books.length && (
                             <div className='showing-contacts'>
-                                <span>Now showing {showingBooks.length}</span>
+                                <h2>Now showing {showingBooks.length}</h2>
                                 <button onClick={this.clearQuery}>Show all</button>
                             </div>
                         )}
 
-                        {!isValid && (
-                            <div className='showing-contacts'>
-                                <span>We didn't find anything</span>
-                                <span>Please try again with words: 'Android', 
-                                    'Art', 'Artificial Intelligence', 'Astronomy', 
-                                    'Austen', 'Baseball', 'Basketball', 'Bhagat', 
-                                    'Biography', 'Brief', 'Business', 'Camus', 
-                                    'Cervantes', 'Christie', 'Classics', 'Comics', 
-                                    'Cook', 'Cricket', 'Cycling', 'Desai', 'Design', 
-                                    'Development', 'Digital Marketing', 'Drama', 
-                                    'Drawing', 'Dumas', 'Education', 'Everything', 
-                                    'Fantasy', 'Film', 'Finance', 'First', 'Fitness', 
-                                    'Football', 'Future', 'Games', 'Gandhi', 'Homer', 
-                                    'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King', 
-                                    'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make', 
-                                    'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate', 'Painting', 
-                                    'Philosophy', 'Photography', 'Poetry', 'Production', 'Programming', 
-                                    'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 
-                                    'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 
-                                    'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 
-                                    'Web Development', 'iOS'</span> 
-                            </div>
-                        )}
+                        
 
 
                         <div className="bookshelf">
@@ -133,7 +132,18 @@ class SearchBooks extends Component {
                         </div>
                     </div>
                 </div>
+                
             </div>
+            <footer>Project Udacity My Reads - Developed by
+            <a
+                href="https://github.com/danieladuarteng"
+                alt="GitHub of Daniela Duarte"
+                target="_blank"
+                rel="noopener noreferrer"
+            >Daniela Duarte - GitHub
+            </a>
+        </footer>
+        </div>
         )
     }
 
