@@ -5,9 +5,7 @@ html, body, .root {
   font-family: 'Times New Roman', Times, serif;
 }
 
-body, .app {
-  background: white;
-}
+.app { background: white; }
 
 a {
   text-decoration: none;
@@ -15,20 +13,16 @@ a {
 }
 
 /* main page */
-
 .list-books-title, .list-books-title-search {
-  padding: 30px 0;
   background: #F74C9A;
   text-align: center;
 }
 
-.list-books-title-search h1{
-  color: #fff
-}
+.list-books-title-search { padding: 10px; }
 
-.list-books-title img {
-  position: relative;
-}
+.list-books-title-search h1 { color: #fff }
+
+.list-books-title img { position: relative; }
 
 @media (max-width: 600px) {
   .list-books-title img {
@@ -42,45 +36,40 @@ a {
   text-align: center;
 }
 
-.bookshelf, .bookshelf-read{
-  background-color: #fff;
-}
-
-.bookshelf-read { 
-  margin-top:10px 
-}
-
-.bookshelf-want {
-  background-color: #F74C9A;
-}
-
-.bookshelf-want h2 {
+.list-books-content h2 {
   color: #fff;
+  font-weight: inherit;
 }
+
+.list-books-content button {
+  background-color: #fff;
+  color: #F74C9A;
+  padding: 10px;
+  border: 1px solid;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 0 auto 50px auto;
+}
+
+.bookshelf{ background-color: #F74C9A; }
 
 .bookshelf-title {
   text-align: left;
-  padding-left: 10px;
+  padding: 10px;
   font-size: 2rem;
+  color: #fff;
 }
 
-.bookshelf-books {
-  text-align: center;
-}
+.bookshelf-books { text-align: center; }
 
-.link-new-books {
-  text-decoration: none;
-}
+.link-new-books { text-decoration: none; }
 
-.new-books{
-  background: #fff;
-
-}
+.new-books{ background: #fff; }
 
 .new-books h1{
   font-size: 2rem;
-    text-align: center;
-    text-decoration: none;
+  text-align: center;
+  text-decoration: none;
 }
 
 .new-books img {
@@ -105,6 +94,18 @@ footer, footer a{
 }
 
 /* search page */
+.message-error {
+  justify-content: center;
+  background-color: #fff;
+  margin: 10px;
+  padding: 50px;
+}
+
+.message-error p{
+  color: #000;
+  font-weight: inherit;
+  line-height: 1.5;
+}
 
 .search-books-bar {
   width: 100%;
@@ -141,15 +142,13 @@ footer, footer a{
   font-size: 0;
 }
 
-.search-books-results {
-  padding: 80px 10px 20px;
-}
+.search-books-results { padding: 80px 10px 20px; }
 
 /* books grid */
 
 .books-grid {
   list-style-type: none;
-  padding: 0;
+  padding: 0 0 50px 0;
   margin: 0;
   display: flex;
   justify-content: center;
@@ -160,24 +159,15 @@ footer, footer a{
   text-align: left;
 }
 
-.book {
-  width: 140px;
-}
+.book { width: 140px; }
+
 .book-title,
 .book-authors,
-.book-authors-want {
-  font-size: 0.8em;
-}
-.book-title {
-  margin-top: 10px;
-}
-.book-authors {
-  color: #999;
-}
+.book-authors-want { font-size: 0.8em; }
 
-.book-authors-want {
-  color: #fff;
-}
+.book-title { margin-top: 10px;}
+
+.book-authors { color: #fff; }
 
 .book-top {
   position: relative;
@@ -200,6 +190,7 @@ footer, footer a{
   background-size: 20px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
+
 .book-shelf-changer select {
   width: 100%;
   height: 100%;
