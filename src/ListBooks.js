@@ -53,7 +53,6 @@ class ListBooks extends Component {
                     />
                 ))}
 
-
                 <footer>Project Udacity My Reads - Developed by
                     <a
                         href="https://github.com/danieladuarteng"
@@ -64,7 +63,6 @@ class ListBooks extends Component {
                     </a>
                 </footer>
             </div>
-
         )
     }
 }

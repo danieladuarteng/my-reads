@@ -110,9 +110,6 @@ class SearchBooks extends Component {
                             </div>
                         )}
 
-                        
-
-
                         <div className="bookshelf">
                             <div className="bookshelf-books">
                                 <ol className="books-grid">
