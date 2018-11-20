@@ -4,7 +4,7 @@ class Book extends React.Component {
     render() {
         const { onChange, shelf, title } = this.props;
 
-        let { imageLinks, book} = this.props;
+        let { imageLinks, book } = this.props;
 
         let bookCover, authors;
 
@@ -14,9 +14,9 @@ class Book extends React.Component {
             bookCover = imageLinks.thumbnail;
         }
 
-        if(typeof book.authors === 'undefined'){
-            authors='No authors';
-        } else{
+        if (typeof book.authors === 'undefined') {
+            authors = 'No authors';
+        } else {
             authors = book.authors
         }
 
@@ -38,7 +38,7 @@ class Book extends React.Component {
                     </div>
                 </div>
                 <div className="book-title">{title}</div>
-                <div className="book-authors-want">{authors}</div>
+                <div className="book-authors">{authors}</div>
             </div>
         )
     }
