@@ -1,4 +1,7 @@
 {
+  "name": "my-reads",
+  "version": "1.0",
+  "homepage": "https://danieladuarteng.github.io/my-reads",
   "dependencies": {
     "escape-string-regexp": "^1.0.5",
     "prop-types": "^15.6.2",
@@ -8,12 +11,21 @@
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "react-scripts": "^2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
