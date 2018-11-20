@@ -11,22 +11,20 @@ const shelves = [
         shelf: 'currentlyReading',
     },
     {
-        title: 'Read',
-        shelf: 'read',
-    },
-    {
         title: 'Want To Read',
         shelf: 'wantToRead',
     },
+    {
+        title: 'Read',
+        shelf: 'read',
+    },
 ];
-
 
 class ListBooks extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,//aqui falo que minha prop books precisa ser um array
         onChangeShelf: PropTypes.func.isRequired,//e aqui que a onChangeShelf seja uma função
     }
-
 
     render() {
         const { books, onChangeShelf } = this.props
@@ -40,29 +38,31 @@ class ListBooks extends Component {
                     >
                         <div className="new-books">
                             <img src={add} alt="add" />
-                            <h1>Search new books</h1></div>
+                            <h1>Search new books</h1>
+                        </div>
                     </Link>
                 </div>
 
-                {shelves.map(item =>(
+                {shelves.map(item => (
                     <BookShelf
                         key={item.title}
                         books={books}
                         title={item.title}
                         shelf={item.shelf}
-                        onChangeShelf={onChangeShelf}                 
+                        onChangeShelf={onChangeShelf}
                     />
                 ))}
 
 
                 <footer>Project Udacity My Reads - Developed by
-                            <a
+                    <a
                         href="https://github.com/danieladuarteng"
                         alt="GitHub of Daniela Duarte"
                         target="_blank"
                         rel="noopener noreferrer"
                     >Daniela Duarte - GitHub
-                            </a></footer>
+                    </a>
+                </footer>
             </div>
 
         )
