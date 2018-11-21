@@ -56,7 +56,7 @@ class SearchBooks extends Component {
         if (this.state.query) {
             showingBooks = result.error ? result.items : result;
         } else {
-            showingBooks = books
+            showingBooks = books.filter( book => book.shelf !== 'none' );
         }
 
         return (
