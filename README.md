@@ -1,72 +1,38 @@
-# MyReads Project
+# MyReads
 
-This is the first project of the Nanodegree React Developer course, from Udacity Brasil.
+This is the first project of the Nanodegree React Developer course, from Udacity Brasil
 
-The goal is was to create a shelf where it was possible to move the books into the categories: currently reading, want read and read, as well as adding more books by means of books search 
+The goal is was to create a shelf where it's possible to move the books into the categories: 
+- Currently reading
+- Want read
+- Read
+As well as adding more books by means of books search
 
-Drawing based on the character Sakura Haruno, created in Adobe Illustrator
+*Drawing based on the character Sakura Uchiha of Boruto Next Generation, 
+created in Adobe Illustrator
 
+## Installation
+Open the [GitBash](https://git-scm.com/) and input the commands:
 
-## TL;DR
+`git clone https://github.com/danieladuarteng/my-reads.git`
 
-To get started developing right away:
+`npm install`
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
+## Run:
 
+To run the project enter:
 
-## Backend Server
+`npm start`
 
-To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
+## Back-End
 
-* [`getAll`](#getall)
-* [`update`](#update)
-* [`search`](#search)
+Udacity provides the back-end server for this project, for 
+[more information access the initial project](https://github.com/udacity/reactnd-project-myreads-starter)
 
-### `getAll`
+## Search
 
-Method Signature:
+The search feature only accept the terms: [SEARCH_TERMS](SEARCH_TERMS.md)
 
-```js
-getAll()
-```
+## License
 
-* Returns a Promise which resolves to a JSON object containing a collection of book objects.
-* This collection represents the books currently in the bookshelves in your app.
-
-### `update`
-
-Method Signature:
-
-```js
-update(book, shelf)
-```
-
-* book: `<Object>` containing at minimum an `id` attribute
-* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
-* Returns a Promise which resolves to a JSON object containing the response data of the POST request
-
-### `search`
-
-Method Signature:
-
-```js
-search(query)
-```
-
-* query: `<String>`
-* Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
-* These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
-
-## Important
-The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
-
-## Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+This project uses the license [MIT](https://choosealicense.com/licenses/mit/)
