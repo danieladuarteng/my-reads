@@ -1,9 +1,9 @@
 {
   "main.css": "/my-reads/static/css/main.aeea95a7.chunk.css",
-  "main.js": "/my-reads/static/js/main.7bb4c438.chunk.js",
-  "main.js.map": "/my-reads/static/js/main.7bb4c438.chunk.js.map",
-  "static/js/1.e26ebd11.chunk.js": "/my-reads/static/js/1.e26ebd11.chunk.js",
-  "static/js/1.e26ebd11.chunk.js.map": "/my-reads/static/js/1.e26ebd11.chunk.js.map",
+  "main.js": "/my-reads/static/js/main.39250bbe.chunk.js",
+  "main.js.map": "/my-reads/static/js/main.39250bbe.chunk.js.map",
+  "static/js/1.2ef3ee76.chunk.js": "/my-reads/static/js/1.2ef3ee76.chunk.js",
+  "static/js/1.2ef3ee76.chunk.js.map": "/my-reads/static/js/1.2ef3ee76.chunk.js.map",
   "runtime~main.js": "/my-reads/static/js/runtime~main.d3c91a85.js",
   "runtime~main.js.map": "/my-reads/static/js/runtime~main.d3c91a85.js.map",
   "static/css/main.aeea95a7.chunk.css.map": "/my-reads/static/css/main.aeea95a7.chunk.css.map",
@@ -11,6 +11,6 @@
   "static/media/App.css": "/my-reads/static/media/arrow-back.f8765f1c.svg",
   "static/media/add.svg": "/my-reads/static/media/add.75d390e5.svg",
   "index.html": "/my-reads/index.html",
-  "precache-manifest.20149cc9cc2f4b25ab340441c2f34077.js": "/my-reads/precache-manifest.20149cc9cc2f4b25ab340441c2f34077.js",
+  "precache-manifest.48a9858606f2cae55052ff39a2fb44c7.js": "/my-reads/precache-manifest.48a9858606f2cae55052ff39a2fb44c7.js",
   "service-worker.js": "/my-reads/service-worker.js"
 }
