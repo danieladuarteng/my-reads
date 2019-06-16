@@ -1,5 +1,7 @@
 # MyReads
 
+![](myreads.gif)
+
 [Access the website](https://danieladuarteng.github.io/my-reads/)
 
 This is the first project of the Nanodegree React Developer course, from Udacity Brasil
